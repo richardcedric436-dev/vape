@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Abidjan Vape · Boutique de vape à Abidjan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0d0b;--ink:#f3f4ee;--mute:#9aa096;--line:#262b25;--card:#141814;--or:#c6ff3d;--gr:#c6ff3d;--tile:#181d18;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f6f1;--ink:#0b0d0b;--mute:#5c6358;--line:#dcded4;--card:#fff;--or:#a6e000;--gr:#4f7a00;--tile:#ecece4}}
+:root[data-theme="light"]{--bg:#f6f6f1;--ink:#0b0d0b;--mute:#5c6358;--line:#dcded4;--card:#fff;--or:#a6e000;--gr:#4f7a00;--tile:#ecece4}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+.pad{padding-left:clamp(18px,4vw,56px);padding-right:clamp(18px,4vw,56px)}
+h1,h2,h3,.logo{font-family:Syne,sans-serif;letter-spacing:-.03em;font-weight:800}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.logo{font-size:20px;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.nav nav{display:flex;gap:26px;align-items:center;font-weight:500;font-size:15px}.nav a{color:var(--ink);text-decoration:none}
+.pill{background:var(--or);color:#0d1f1a;border-radius:99px;padding:9px 18px;font-weight:700;font-size:14px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(20px,4vw,56px);padding-top:clamp(28px,5vw,64px);overflow:hidden}
+.hero h1{grid-column:1/-1;font-size:clamp(56px,15vw,240px);line-height:.84;text-transform:uppercase;position:relative;z-index:2}
+.hero h1 span{display:block}.hero h1 .o{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.lead{align-self:center;padding-bottom:40px}.lead p{color:var(--mute);font-size:18px;max-width:42ch;margin-bottom:28px}
+.cta{display:inline-block;background:var(--or);color:#0d1f1a;font-weight:700;padding:15px 30px;border-radius:99px;text-decoration:none}
+.stage{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:2%;aspect-ratio:1/.9;margin-top:calc(-1 * clamp(30px,8vw,130px))}
+.stage::before{content:"";position:absolute;width:76%;aspect-ratio:1;border-radius:50%;background:var(--or);left:50%;bottom:4%;transform:translateX(-50%)}
+.stage svg{position:relative;width:32%;filter:drop-shadow(0 16px 16px rgba(0,0,0,.35))}.stage svg:nth-child(2){width:36%;margin-bottom:-3%}
+.mq{overflow:hidden;background:var(--or);color:#0b0d0b;white-space:nowrap}
+.mq div{display:inline-block;padding:14px 0;animation:mq 30s linear infinite;font-family:Syne;font-weight:800;text-transform:uppercase;font-size:18px}
+@keyframes mq{to{transform:translateX(-50%)}}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:36px;padding-bottom:36px}
+.perks div{border-top:1px solid var(--line);padding-top:16px}.perks i{font-style:normal;color:var(--or);font-family:Syne;font-weight:800;display:block}
+.perks b{font-family:Syne;font-size:20px;display:block}.perks span{color:var(--mute);font-size:15px}
+.shop{padding-top:clamp(40px,6vw,80px);padding-bottom:clamp(48px,7vw,96px)}
+.shop header{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:22px}
+h2{font-size:clamp(34px,5vw,64px);line-height:1;text-transform:uppercase}.cnt{color:var(--mute);font-size:14px}
+.search{width:100%;margin-bottom:14px;padding:14px 20px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink);font:inherit}
+.pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:22px;scrollbar-width:thin}
+.pills button{border:1px solid var(--line);border-radius:99px;padding:8px 18px;font-size:14px;font-weight:500;white-space:nowrap}
+.pills button[aria-pressed=true]{background:var(--or);color:#0d1f1a;border-color:var(--or);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.6vw,22px)}
+.empty{color:var(--mute);grid-column:1/-1}
+.card{text-align:left;display:block;width:100%}
+.tile{aspect-ratio:4/5;border-radius:16px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse 62% 48% at 50% 42%,rgba(198,255,61,.18),transparent 72%),var(--tile);transition:border-color .2s}
+.tile svg{height:86%;width:auto}.card:hover .tile{border-color:var(--or)}
+.meta{display:flex;justify-content:space-between;gap:10px;margin-top:12px;font-weight:700}.meta span:last-child{color:var(--gr);white-space:nowrap}
+.zone{background:var(--or);color:#0b0d0b;padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(48px,7vw,96px)}
+.zone p{max-width:54ch;margin:16px 0 28px;font-size:18px}.chips{display:flex;flex-wrap:wrap;gap:10px}.chips span{border:1.5px solid #0b0d0b;border-radius:99px;padding:7px 16px;font-weight:500}
+footer{padding-top:44px;padding-bottom:44px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--mute);font-size:14px}footer p{max-width:60ch}
+dialog{border:0;border-radius:18px;padding:0;width:min(520px,94vw);max-height:92vh;overflow:auto;background:var(--bg);color:var(--ink);margin:auto}
+dialog::backdrop{background:rgba(5,12,9,.72)}
+.box{padding:clamp(22px,4vw,36px);display:flex;flex-direction:column;gap:14px;position:relative}
+.box h3{font-size:22px;line-height:1.15}
+.box p{color:var(--mute)}
+.btn{background:var(--ink);color:var(--bg);padding:15px;border-radius:99px;font-weight:700;text-align:center;text-decoration:none;display:block}
+.btn.or{background:var(--or);color:#0d1f1a}.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;font-size:22px}
+label{display:flex;flex-direction:column;gap:6px;font-weight:500;font-size:14px}
+input{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:inherit;width:100%}
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pay label{flex-direction:row;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;background:var(--card)}
+.pay input{width:auto}.pay label:has(input:checked){border-color:var(--or);box-shadow:0 0 0 1px var(--or)}
+.sizes{display:flex;gap:8px;flex-wrap:wrap}
+.pd{display:grid;grid-template-columns:1fr 1fr}.pd .tile{border-radius:0;aspect-ratio:auto;min-height:320px}
+.scrim{position:fixed;inset:0;background:rgba(5,12,9,.6);z-index:70;opacity:0;pointer-events:none;transition:opacity .3s}.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--bg);z-index:80;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;padding:calc(22px + env(safe-area-inset-top,0px)) 22px calc(22px + env(safe-area-inset-bottom,0px))}
+.drawer.open{transform:none}
+.drawer header{display:flex;justify-content:space-between;align-items:center;font-family:Unbounded;font-size:20px;margin-bottom:16px}
+.items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:14px}
+.it{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px}.it .tile{border-radius:10px}
+.qty{display:flex;align-items:center;gap:10px;margin-top:4px}.qty button{width:28px;height:28px;border:1px solid var(--line);border-radius:50%}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:18px;padding:16px 0}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.pd{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.perks{grid-template-columns:1fr}.nav nav a{display:none}.lead{padding-bottom:24px}}
+@media (prefers-reduced-motion:reduce){.mq div{animation:none}.drawer,.scrim{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="nav pad"><a class="logo" href="#">Abidjan Vape</a><nav><a href="#boutique">Boutique</a><a href="#livraison">Livraison</a><button class="pill" id="open">Panier (<span id="n">0</span>)</button></nav></div>
+<section class="hero pad"><h1><span>Abidjan</span><span class="o">Vape</span></h1><div class="lead"><p>Tout le vape au même endroit : kits, puffs, e-liquides, sels de nicotine et accessoires. Livraison partout à Abidjan.</p><a class="cta" href="#boutique">Voir la boutique</a></div><div class="stage" id="stage" aria-hidden="true"></div></section>
+<div class="mq" aria-hidden="true"><div>Kits pod ✦ Box mods ✦ Puffs ✦ E-liquides ✦ Sels de nicotine ✦ Atomiseurs ✦ Batteries ✦ Accessoires ✦ Kits pod ✦ Box mods ✦ Puffs ✦ E-liquides ✦ Sels de nicotine ✦ Atomiseurs ✦ Batteries ✦ Accessoires ✦ Kits pod ✦ Box mods ✦ Puffs ✦ E-liquides ✦ Sels de nicotine ✦ Atomiseurs ✦ Batteries ✦ Accessoires ✦ Kits pod ✦ Box mods ✦ Puffs ✦ E-liquides ✦ Sels de nicotine ✦ Atomiseurs ✦ Batteries ✦ Accessoires ✦ </div></div>
+<section class="perks pad"><div><i>01</i><b>Livraison express</b><span>Dans toutes les communes d’Abidjan.</span></div><div><i>02</i><b>Paiement flexible</b><span>Cash, Wave, Orange Money ou MTN MoMo.</span></div><div><i>03</i><b>Conseils gratuits</b><span>On vous aide à choisir sur WhatsApp.</span></div></section>
+<section class="shop pad" id="boutique"><header><h2>La boutique</h2><span class="cnt" id="count"></span></header><input class="search" id="q" type="search" placeholder="Rechercher un produit, une saveur…" aria-label="Rechercher un produit"><div class="pills" id="pills"></div><div class="grid" id="grid"></div></section>
+<section class="zone pad" id="livraison"><h2>On livre où vous êtes.</h2><p>Passez commande, on confirme sur WhatsApp et un livreur vous apporte vos produits. Paiement à la livraison possible.</p><div class="chips"><span>Cocody</span><span>Plateau</span><span>Marcory</span><span>Treichville</span><span>Yopougon</span><span>Abobo</span><span>Adjamé</span><span>Koumassi</span><span>Port-Bouët</span><span>Riviera</span><span>Angré</span><span>Bingerville</span></div></section>
+<footer class="pad"><b class="logo" style="color:var(--ink)">Abidjan Vape</b><p>Produits réservés aux adultes de 18 ans et plus. Les produits contenant de la nicotine créent une forte dépendance. © 2026 Abidjan Vape.</p></footer>
+
+<dialog id="age"><div class="box"><h3>Vous avez 18 ans ou plus ?</h3><p>La vente de produits de vape est réservée aux adultes.</p><button class="btn or" id="yes">Oui, j’ai 18 ans ou plus</button><button class="btn ghost" id="no">Non, quitter</button></div></dialog>
+<dialog id="dlg"></dialog><dialog id="co"></dialog>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Panier"><header>Panier <button class="x" style="position:static" id="close" aria-label="Fermer">×</button></header><div class="items" id="items"></div><div class="tot"><span>Total</span><span id="total">0 FCFA</span></div><button class="btn or" id="checkout">Commander</button></aside>
+
+<script>
+/* À MODIFIER : numéro WhatsApp au format international, sans le + */
+const CFG={whatsapp:"2250700000000"};
+let u=0;const gl=(i,c)=>`<linearGradient id="${i}" x1="0" x2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${c[1]}"/></linearGradient>`;
+const svg=(b,c)=>{const i="g"+(++u);return `<svg viewBox="0 0 200 250" role="img">${gl(i,c)}${b(i,c)}</svg>`};
+const ART={
+pod:c=>svg(i=>`<rect x="70" y="58" width="60" height="158" rx="24" fill="url(#${i})"/><rect x="78" y="26" width="44" height="42" rx="12" fill="#fff" opacity=".5"/><rect x="88" y="12" width="24" height="18" rx="6" fill="#0d1f1a"/><rect x="92" y="100" width="16" height="50" rx="8" fill="#fff" opacity=".25"/><circle cx="100" cy="186" r="6" fill="#fff"/>`,c),
+mod:c=>svg(i=>`<rect x="80" y="10" width="40" height="40" rx="10" fill="#fff" opacity=".5"/><rect x="88" y="4" width="24" height="12" rx="4" fill="#0d1f1a"/><rect x="56" y="46" width="88" height="176" rx="18" fill="url(#${i})"/><rect x="70" y="64" width="60" height="42" rx="7" fill="#0d1f1a"/><text x="100" y="92" text-anchor="middle" font-family="Unbounded,sans-serif" font-size="15" fill="#ff6a2b">80W</text><circle cx="100" cy="158" r="18" fill="#fff" opacity=".9"/><circle cx="100" cy="158" r="9" fill="#ff6a2b"/>`,c),
+puff:c=>svg(i=>`<rect x="72" y="50" width="56" height="174" rx="28" fill="url(#${i})"/><rect x="88" y="26" width="24" height="30" rx="9" fill="#0d1f1a"/><rect x="72" y="112" width="56" height="44" fill="#fff" opacity=".28"/><circle cx="100" cy="192" r="5" fill="#fff"/>`,c),
+juice:c=>svg(i=>`<rect x="94" y="34" width="12" height="30" rx="3" fill="#0d1f1a"/><rect x="82" y="58" width="36" height="34" rx="6" fill="#0d1f1a"/><rect x="68" y="88" width="64" height="130" rx="14" fill="url(#${i})"/><rect x="68" y="88" width="64" height="130" rx="14" fill="#fff" opacity=".18"/><rect x="74" y="128" width="52" height="64" rx="6" fill="#fff"/><text x="100" y="152" text-anchor="middle" font-family="Unbounded,sans-serif" font-size="9" fill="#0d1f1a">E-LIQ</text><text x="100" y="176" text-anchor="middle" font-family="Figtree,sans-serif" font-size="11" fill="#5d6b65">60 ml</text>`,c),
+coil:c=>svg(i=>`<rect x="44" y="96" width="112" height="108" rx="14" fill="url(#${i})"/>${[0,1,2].map(k=>`<rect x="${58+k*34}" y="122" width="24" height="46" rx="6" fill="#fff" opacity=".85"/><path d="M${62+k*34} 134h16M${62+k*34} 142h16M${62+k*34} 150h16" stroke="#0d1f1a" stroke-width="2"/>`).join("")}<text x="100" y="190" text-anchor="middle" font-family="Unbounded,sans-serif" font-size="9" fill="#fff">× 5</text>`,c),
+batt:c=>svg(i=>`${[0,1].map(k=>`<rect x="${64+k*42}" y="62" width="30" height="150" rx="9" fill="url(#${i})"/><rect x="${72+k*42}" y="52" width="14" height="12" rx="3" fill="#bbb"/><rect x="${64+k*42}" y="108" width="30" height="40" fill="#fff" opacity=".35"/>`).join("")}`,c)};
+const C={kits:"Kits pod",mods:"Box mods",puffs:"Puffs",liquides:"E-liquides",sels:"Sels de nicotine",atos:"Atomiseurs & résistances",bats:"Batteries & chargeurs",acc:"Accessoires"};
+const raw=[['kits', 'Pod Slim Noir', '15000', 'pod', '#3a4741', '#0d1f1a', 'Kit pod compact et discret, idéal pour débuter. Recharge USB-C.'], ['kits', 'Pod Slim Orange', '15000', 'pod', '#ff9a63', '#ff6a2b', 'Le même kit pod en orange vif. Tirage doux, parfait pour les saveurs fruitées.'], ['kits', 'Pod Pro Argent', '22000', 'pod', '#cfd5d3', '#8d9794', 'Pod rechargeable à finition aluminium, batterie longue durée.'], ['kits', 'Stylo Starter', '9000', 'pen', '#4a5a54', '#1d2a25', 'Cigarette électronique format stylo, très simple, pour arrêter la cigarette.'], ['kits', 'Kit Débutant 2 Pods', '18000', 'pod', '#4f8cff', '#1d4fd1', 'Kit pod complet livré avec 2 pods et un câble de charge.'], ['mods', 'Box Mod 80W Noir', '35000', 'mod', '#2a3b34', '#0d1f1a', 'Box mod avec écran, puissance réglable jusqu’à 80 W.'], ['mods', 'Box Mod 80W Vert Forêt', '38000', 'mod', '#1f8a60', '#0f5c3f', 'Box mod 80 W, finition vert forêt, bouton de tir ergonomique.'], ['mods', 'Box Mod 200W Double Batterie', '55000', 'mod', '#8b2c2c', '#561313', 'Mod 200 W pour gros nuages. Fonctionne avec deux batteries 18650.'], ['mods', 'Pod Mod 40W Réglable', '28000', 'pod', '#ffcf3d', '#d99a00', 'Pod mod réglable jusqu’à 40 W, entre le pod et la box.'], ['puffs', 'Puff 6000 Mangue Glacée', '7000', 'puff', '#ffc15e', '#ff8a1f', 'Jetable environ 6000 bouffées. Mangue mûre et fraîcheur glacée.'], ['puffs', 'Puff 6000 Menthe', '7000', 'puff', '#8fe0bd', '#2fa97a', 'Jetable environ 6000 bouffées. Menthe franche, sensation fraîche.'], ['puffs', 'Puff 6000 Fruits Rouges', '7000', 'puff', '#ea6b80', '#b5233f', 'Jetable environ 6000 bouffées. Fraise, framboise et cassis.'], ['puffs', 'Puff 9000 Pastèque Glacée', '10000', 'puff', '#ff7b8a', '#e0405a', 'Jetable environ 9000 bouffées, rechargeable. Pastèque bien fraîche.'], ['puffs', 'Puff 9000 Raisin Glacé', '10000', 'puff', '#8a6bd1', '#4b3a8f', 'Jetable environ 9000 bouffées, rechargeable. Raisin et glace.'], ['puffs', 'Puff 9000 Cola Citron', '10000', 'puff', '#b07a4a', '#6b3f1d', 'Jetable environ 9000 bouffées, rechargeable. Cola pétillant au citron.'], ['liquides', 'E-liquide Tabac Blond', '6000', 'juice', '#d79a4a', '#a86a1f', '60 ml, nicotine au choix à préciser sur WhatsApp. Tabac blond rond et léger.'], ['liquides', 'E-liquide Fruits Rouges', '6000', 'juice', '#e0566b', '#a31e38', '60 ml, nicotine au choix à préciser sur WhatsApp. Mélange gourmand de baies.'], ['liquides', 'E-liquide Menthe Polaire', '6000', 'juice', '#58cfa0', '#1c8f68', '60 ml, nicotine au choix à préciser sur WhatsApp. Menthe glaciale et propre.'], ['liquides', 'E-liquide Mangue Ananas', '6000', 'juice', '#ffc15e', '#f08a14', '60 ml, nicotine au choix à préciser sur WhatsApp. Fruits exotiques juteux.'], ['liquides', 'E-liquide Vanille Crème', '6000', 'juice', '#f1dfae', '#d1b268', '60 ml, nicotine au choix à préciser sur WhatsApp. Dessert onctueux à la vanille.'], ['liquides', 'E-liquide Pastèque Glacée', '6000', 'juice', '#ff7b8a', '#d6405a', '60 ml, nicotine au choix à préciser sur WhatsApp. Pastèque et fraîcheur.'], ['liquides', 'E-liquide Cola', '6000', 'juice', '#b07a4a', '#5a3418', '60 ml, nicotine au choix à préciser sur WhatsApp. Le goût du soda.'], ['liquides', 'Base 50/50 100 ml', '5000', 'juice', '#c7ced1', '#8a959a', 'Base neutre 50 % PG / 50 % VG pour préparer vos propres e-liquides.'], ['liquides', 'Boosters de nicotine ×10', '7000', 'mini', '#f3d36a', '#d99a1d', 'Pack de 10 boosters pour ajuster le taux de nicotine de vos e-liquides.', 'BOOSTER'], ['sels', 'Sel de nicotine Mangue 20 mg', '3500', 'mini', '#ffc15e', '#f08a14', '10 ml, 20 mg/ml. Pour pods et petits kits. Mangue sucrée.'], ['sels', 'Sel de nicotine Menthe 20 mg', '3500', 'mini', '#8fe0bd', '#2fa97a', '10 ml, 20 mg/ml. Pour pods et petits kits. Menthe fraîche.'], ['sels', 'Sel de nicotine Raisin 20 mg', '3500', 'mini', '#8a6bd1', '#4b3a8f', '10 ml, 20 mg/ml. Pour pods et petits kits. Raisin glacé.'], ['atos', 'Clearomizer MTL 4 ml', '9000', 'tank', '#9aa3a0', '#5d6764', 'Réservoir 4 ml pour tirage serré, proche de la cigarette.'], ['atos', 'Atomiseur RTA 24 mm', '18000', 'tank', '#e3c46a', '#a8842a', 'Atomiseur reconstructible 24 mm pour les vapoteurs avancés.'], ['atos', 'Résistances MTL 1.0 Ω ×5', '4500', 'coil', '#ff8a4c', '#e0551a', 'Pack de 5 résistances de rechange. Précisez votre modèle sur WhatsApp.'], ['atos', 'Résistances Mesh 0.4 Ω ×5', '5500', 'coil', '#2a8f6a', '#0f5c3f', 'Pack de 5 résistances mesh pour une meilleure saveur et plus de vapeur.'], ['atos', 'Pods de rechange ×3', '5000', 'cart', '#d08a35', '#a8651a', 'Trois pods de rechange. Précisez votre modèle de kit sur WhatsApp.'], ['bats', 'Batteries 18650 ×2', '8000', 'batt', '#2a8f6a', '#0f5c3f', 'Deux batteries 18650 haute décharge, pour box mod.'], ['bats', 'Batteries 21700 ×2', '11000', 'batt', '#3b82f6', '#1d4fd1', 'Deux batteries 21700 grande capacité, plus d’autonomie.'], ['bats', 'Chargeur 2 slots', '6000', 'charger', '#2a3b34', '#0d1f1a', 'Chargeur USB deux emplacements pour batteries 18650 et 21700.'], ['acc', 'Drip Tip 810 Résine', '2500', 'tip', '#ff6a2b', '#c2400a', 'Embout 810 en résine, confortable et facile à nettoyer.'], ['acc', 'Drip Tip 510 Inox', '3000', 'tip', '#cfd5d3', '#8d9794', 'Embout 510 en inox, finition brossée.']];
+const P=raw.map((r,i)=>({id:i+1,n:r[1],p:+r[2],c:r[0],a:r[3],k:[r[4],r[5]],bg:"#222",d:r[6],t:r[7]}));
+/* Rendu réaliste : dégradés cylindriques, reflets, verre, métal, ombres */
+const sh=(h,f)=>"#"+[1,3,5].map(i=>{let v=parseInt(h.substr(i,2),16);v=f<0?v*(1+f):v+(255-v)*f;return Math.round(v).toString(16).padStart(2,"0")}).join("");
+const st=(o,c,a)=>`<stop offset="${o}" stop-color="${c}"${a!=null?` stop-opacity="${a}"`:""}/>`;
+const lg=(id,x2,y2,s)=>`<linearGradient id="${id}" x1="0" y1="0" x2="${x2}" y2="${y2}">${s}</linearGradient>`;
+const D=(i,b)=>`<defs>${lg(i,1,0,st(0,sh(b,-.5))+st(.22,b)+st(.42,sh(b,.45))+st(.7,b)+st(1,sh(b,-.6)))}${lg(i+"v",0,1,st(0,"#fff",.4)+st(.35,"#fff",0)+st(1,"#000",.3))}${lg(i+"m",1,0,st(0,"#586260")+st(.3,"#f3f5f4")+st(.55,"#9aa3a0")+st(.8,"#e8ebea")+st(1,"#4f5755"))}${lg(i+"g",1,0,st(0,"#fff",.55)+st(.25,"#fff",.08)+st(.75,"#fff",.05)+st(1,"#fff",.4))}${lg(i+"x",1,0,st(0,"#000",.38)+st(.3,"#000",0)+st(.6,"#000",.05)+st(1,"#000",.45))}<radialGradient id="${i}l">${st(0,"#fff")+st(.4,"#ffb38a")+st(1,"#ff6a2b",0)}</radialGradient><filter id="${i}b" x="-30%" y="-300%" width="160%" height="700%"><feGaussianBlur stdDeviation="5"/></filter></defs>`;
+const S2=(f,k)=>{const i="r"+(++u);return `<svg viewBox="0 0 200 250" role="img">${D(i,k[1])}<ellipse cx="100" cy="223" rx="52" ry="7" fill="#000" opacity=".38" filter="url(#${i}b)"/>${f(i,k[1])}</svg>`};
+const B=(i,x,y,w,h,r)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="url(#${i})"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="url(#${i}v)"/><rect x="${x+w*.2}" y="${y+r*.6}" width="3" height="${h-r*1.2}" rx="1.5" fill="#fff" opacity=".35"/>`;
+const R=(x,y,w,h,r,f,e="")=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${f}" ${e}/>`;
+const T=(x,y,s,t,f,e="")=>`<text x="${x}" y="${y}" text-anchor="middle" font-family="Unbounded,sans-serif" font-size="${s}" fill="${f}" ${e}>${t}</text>`;
+const LED=(i,y)=>`<circle cx="100" cy="${y}" r="12" fill="url(#${i}l)"/><circle cx="100" cy="${y}" r="3" fill="#fff"/>`;
+ART.pod=c=>S2((i,b)=>R(90,10,20,24,7,"#1b1f1e")+R(94,13,3,14,1.5,"#fff",'opacity=".3"')+R(76,28,48,50,11,"#262b29")+R(80,46,40,28,7,"#d08a35",'opacity=".9"')+R(76,28,48,50,11,`url(#${i}g)`)+R(68,72,64,6,2,`url(#${i}m)`)+B(i,68,76,64,146,24)+R(94,122,12,36,6,sh(b,-.45))+R(96,124,2,32,1,"#fff",'opacity=".3"')+T(100,108,8,"AV","#fff",'opacity=".55"')+LED(i,196),c);
+ART.mod=c=>S2((i,b)=>R(92,6,16,16,4,"#1b1f1e")+R(80,20,40,8,3,`url(#${i}m)`)+R(82,28,36,44,5,"#cfd6d3",'opacity=".3"')+R(85,42,30,28,4,"#d58a2e",'opacity=".9"')+R(82,28,36,44,5,`url(#${i}g)`)+R(78,70,44,8,3,`url(#${i}m)`)+B(i,56,76,88,146,16)+R(70,90,60,38,6,"#0a0f0d")+T(100,116,15,"80W","#ff8a4c")+R(74,94,16,5,1,"#3fd68a")+R(92,94,16,5,1,"#3fd68a")+`<circle cx="100" cy="168" r="19" fill="url(#${i}m)"/><circle cx="100" cy="168" r="13" fill="#1b1f1e"/><circle cx="96" cy="163" r="4" fill="#fff" opacity=".25"/><circle cx="78" cy="204" r="5" fill="#1b1f1e" stroke="#9aa3a0"/><circle cx="122" cy="204" r="5" fill="#1b1f1e" stroke="#9aa3a0"/>`,c);
+ART.puff=c=>S2((i,b)=>R(88,22,24,34,9,"#1b1f1e")+R(91,26,3,22,1.5,"#fff",'opacity=".3"')+B(i,72,48,56,174,28)+R(72,108,56,54,0,"#f4f1ea")+R(72,108,56,54,0,`url(#${i}x)`)+T(100,132,13,"6000","#1b1f1e")+T(100,148,6,"PUFFS",sh(b,-.3))+R(72,162,56,4,0,b)+LED(i,200),c);
+ART.juice=c=>S2((i,b)=>R(95,32,10,28,4,"#26302d")+R(84,56,32,30,5,"#1b1f1e")+[0,1,2,3].map(n=>R(84,62+n*6,32,1.5,0,"#fff",'opacity=".12"')).join("")+R(87,59,3,24,1.5,"#fff",'opacity=".25"')+R(78,82,44,22,8,sh(b,-.15))+R(66,96,68,126,16,sh(b,-.15))+R(66,96,68,126,16,`url(#${i}g)`)+R(72,110,4,96,2,"#fff",'opacity=".45"')+R(72,128,56,72,3,"#f6f2ea")+R(72,128,56,72,3,`url(#${i}x)`)+R(72,128,56,14,3,b)+T(100,160,8,"E-LIQUIDE","#0d1f1a")+T(100,178,7,"60 ml","#5d6b65")+T(100,192,5,"NICOTINE 0-18 MG","#5d6b65"),c);
+ART.coil=c=>S2((i,b)=>B(i,40,60,120,152,10)+T(100,84,12,"COILS","#fff")+R(52,94,96,90,12,"#fff",'opacity=".22" stroke="#fff" stroke-opacity=".6"')+[0,1,2].map(n=>{const x=60+n*32;return R(x,108,24,60,5,`url(#${i}m)`)+R(x,108,24,9,4,"#f5f0e6")+[0,1,2,3,4].map(m=>R(x+3,124+m*7,18,2,1,"#7a5a2e",'opacity=".7"')).join("")}).join("")+T(100,204,10,"× 5","#fff"),c);
+ART.batt=c=>S2((i,b)=>[0,1].map(n=>{const x=58+n*50;return R(x+9,50,16,8,3,`url(#${i}m)`)+B(i,x,56,34,160,9)+R(x,64,34,16,0,"#f3f3f3")+R(x,64,34,16,0,`url(#${i}x)`)+`<text transform="translate(${x+22} 190) rotate(-90)" font-family="Unbounded,sans-serif" font-size="10" fill="#fff">18650</text>`}).join(""),c);
+ART.tank=c=>S2((i,b)=>R(88,16,24,22,6,"#1b1f1e")+R(78,36,44,10,3,`url(#${i}m)`)+R(80,46,40,108,10,"#cfd6d3",'opacity=".28"')+R(83,84,34,68,6,"#d08a35",'opacity=".85"')+R(80,46,40,108,10,`url(#${i}g)`)+R(76,154,48,16,4,`url(#${i}m)`)+R(82,170,36,14,3,"#1b1f1e")+R(95,184,10,10,2,"#d9b04a"),c);
+ART.charger=c=>S2((i,b)=>[0,1].map(n=>R(54+n*54,70,34,96,9,`url(#${i}m)`)+R(54+n*54,70,34,96,9,`url(#${i}x)`)).join("")+B(i,36,120,128,76,14)+'<circle cx="71" cy="182" r="4" fill="#3fd68a"/><circle cx="125" cy="182" r="4" fill="#3fd68a"/><path d="M164 160c26 0 26 36 0 36" fill="none" stroke="#1b1f1e" stroke-width="5"/>',c);
+ART.tip=c=>S2((i,b)=>{const d="M62 82q0-14 14-14h48q14 0 14 14l-16 70H78z";return `<path d="${d}" fill="url(#${i})"/><path d="${d}" fill="url(#${i}v)"/><ellipse cx="100" cy="70" rx="24" ry="4" fill="#000" opacity=".5"/>`+R(82,152,36,40,4,`url(#${i}m)`)+R(82,164,36,4,2,"#1b1f1e")+R(82,176,36,4,2,"#1b1f1e")},c);
+ART.mini=(c,t)=>S2((i,b)=>R(95,52,10,22,3,"#26302d")+R(86,72,28,24,4,"#1b1f1e")+R(89,75,3,18,1.5,"#fff",'opacity=".25"')+R(80,92,40,16,7,sh(b,-.15))+R(72,102,56,112,14,sh(b,-.15))+R(72,102,56,112,14,`url(#${i}g)`)+R(77,114,4,84,2,"#fff",'opacity=".45"')+R(77,130,46,56,3,"#f6f2ea")+R(77,130,46,56,3,`url(#${i}x)`)+R(77,130,46,12,3,b)+T(100,160,7,t||"SEL DE NIC","#0d1f1a")+T(100,174,6,"10 ml","#5d6b65")+T(100,184,5,"20 mg/ml","#5d6b65"),c);
+ART.pen=c=>S2((i,b)=>R(92,18,16,30,6,"#1b1f1e")+R(95,22,3,20,1.5,"#fff",'opacity=".3"')+R(90,46,20,52,5,"#cfd6d3",'opacity=".3"')+R(92,66,16,30,4,"#d08a35",'opacity=".9"')+R(90,46,20,52,5,`url(#${i}g)`)+R(88,96,24,6,2,`url(#${i}m)`)+B(i,88,102,24,120,12)+R(88,140,24,5,2,`url(#${i}m)`)+LED(i,200),c);
+ART.cart=c=>S2((i,b)=>[0,1,2].map(n=>{const x=48+n*36;return R(x+8,92,14,14,4,"#1b1f1e")+R(x,104,30,86,9,"#262b29")+R(x+3,138,24,48,6,"#d08a35",'opacity=".9"')+R(x,104,30,86,9,`url(#${i}g)`)+R(x+6,190,18,8,2,`url(#${i}m)`)}).join("")+T(100,218,10,"× 3","currentColor"),c);
+const CAT=[["all","Tout"],...Object.entries(C)];
+const $=s=>document.querySelector(s),fmt=n=>n.toLocaleString("fr-FR")+" FCFA",art=p=>ART[p.a](p.k,p.t);
+let F="all",cart=[];
+$("#stage").innerHTML=ART.pod(["#3a4741","#0d1f1a"])+ART.mod(["#ff9a63","#ff6a2b"])+ART.puff(["#8fe0bd","#2fa97a"]);
+let Q="";function grid(){const L=P.filter(p=>(F==="all"||p.c===F)&&(p.n+" "+p.d).toLowerCase().includes(Q));$("#count").textContent=L.length+" produits";$("#pills").innerHTML=CAT.map(([k,t])=>`<button data-f="${k}" aria-pressed="${F===k}">${t}</button>`).join("");
+$("#grid").innerHTML=L.map(p=>`<button class="card" data-id="${p.id}"><div class="tile" style="--bg-t:${p.bg}">${art(p)}</div><div class="meta"><span>${p.n}</span><span>${fmt(p.p)}</span></div></button>`).join("")||'<p class="empty">Aucun produit trouvé.</p>'}
+document.addEventListener("click",e=>{const f=e.target.closest("[data-f]");if(f){F=f.dataset.f;grid();return}const c=e.target.closest(".card");if(c)show(P.find(p=>p.id==c.dataset.id))});
+const X='<button class="x" type="button" aria-label="Fermer">×</button>';
+function show(p){const d=$("#dlg");d.innerHTML=`<div class="pd"><div class="tile" style="--bg-t:${p.bg}">${art(p)}</div><div class="box">${X}<h3>${p.n}</h3><b style="font-size:20px">${fmt(p.p)}</b><p>${p.d}</p><button class="btn or" id="add" style="margin-top:auto">Ajouter au panier</button></div></div>`;
+d.querySelector(".x").onclick=()=>d.close();d.onclick=e=>{if(e.target===d)d.close()};
+d.querySelector("#add").onclick=()=>{const l=cart.find(x=>x.p===p);l?l.q++:cart.push({p,q:1});d.close();draw();cartOpen(true)};d.showModal()}
+function draw(){$("#n").textContent=cart.reduce((a,l)=>a+l.q,0);$("#total").textContent=fmt(cart.reduce((a,l)=>a+l.q*l.p.p,0));
+$("#items").innerHTML=cart.length?cart.map(l=>`<div class="it"><div class="tile" style="--bg-t:${l.p.bg}">${art(l.p)}</div><div><b>${l.p.n}</b><div class="qty"><button data-k="${l.p.id}" data-d="-1" aria-label="Retirer un">−</button>${l.q}<button data-k="${l.p.id}" data-d="1" aria-label="Ajouter un">+</button></div></div><span>${fmt(l.q*l.p.p)}</span></div>`).join(""):'<p style="color:var(--mute)">Votre panier est vide.</p>'}
+$("#items").onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;const l=cart.find(x=>x.p.id==b.dataset.k);l.q+=+b.dataset.d;if(l.q<1)cart=cart.filter(x=>x!==l);draw()};
+function cartOpen(o){$("#drawer").classList.toggle("open",o);$("#scrim").classList.toggle("open",o)}
+$("#open").onclick=()=>cartOpen(true);$("#close").onclick=$("#scrim").onclick=()=>cartOpen(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")cartOpen(false)});
+$("#checkout").onclick=()=>{if(!cart.length)return;cartOpen(false);const d=$("#co"),tot=cart.reduce((a,l)=>a+l.q*l.p.p,0);
+d.innerHTML=`<div class="box">${X}<h3>Finaliser la commande</h3><label>Nom<input name="nom" required autocomplete="name"></label><label>Téléphone<input name="tel" type="tel" required autocomplete="tel"></label><label>Commune et adresse de livraison<input name="adr" required placeholder="Ex : Cocody Angré, 8e tranche"></label>
+<div class="pay">${["Cash à la livraison","Wave","Orange Money","MTN MoMo"].map((m,i)=>`<label><input type="radio" name="pay" value="${m}" ${i?"":"checked"}>${m}</label>`).join("")}</div>
+<p style="font-size:14px">Pour Wave, Orange Money et MTN MoMo, le numéro de paiement vous est envoyé sur WhatsApp.</p><b>Total ${fmt(tot)}</b><button class="btn or" id="go">Valider la commande</button></div>`;
+d.querySelector(".x").onclick=()=>d.close();d.onclick=e=>{if(e.target===d)d.close()};
+d.querySelector("#go").onclick=()=>{for(const i of d.querySelectorAll("input[required]"))if(!i.reportValidity())return;const q=n=>d.querySelector(`[name=${n}]`).value.trim(),pay=d.querySelector("[name=pay]:checked").value,ref="AV-"+Math.random().toString(36).slice(2,6).toUpperCase();
+const msg=`Commande ${ref}\n`+cart.map(l=>`${l.q} × ${l.p.n} : ${fmt(l.q*l.p.p)}`).join("\n")+`\nTotal : ${fmt(tot)}\nPaiement : ${pay}\n\n${q("nom")}\n${q("tel")}\n${q("adr")}`;
+d.innerHTML=`<div class="box">${X}<h3>Commande ${ref}</h3><p>Une dernière étape : envoyez-nous votre commande sur WhatsApp pour la confirmer et organiser la livraison.</p><a class="btn or" href="https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Envoyer sur WhatsApp</a></div>`;d.querySelector(".x").onclick=()=>d.close();cart=[];draw()};d.showModal()};
+const age=$("#age");let ok=false;try{ok=sessionStorage.getItem("av18")==="1"}catch(e){}
+if(!ok){age.addEventListener("cancel",e=>e.preventDefault());age.showModal();$("#yes").onclick=()=>{try{sessionStorage.setItem("av18","1")}catch(e){}age.close()};$("#no").onclick=()=>{document.body.innerHTML='<p style="padding:40px;font-family:sans-serif">Ce site est réservé aux adultes.</p>'}}
+$("#q").oninput=e=>{Q=e.target.value.trim().toLowerCase();grid()};grid();draw();
+</script>
+</body>
+</html>
