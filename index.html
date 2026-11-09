@@ -47,7 +47,7 @@ h2{font-size:clamp(34px,5vw,64px);line-height:1;text-transform:uppercase}.cnt{co
 .empty{color:var(--mute);grid-column:1/-1}
 .card{text-align:left;display:block;width:100%}
 .tile{aspect-ratio:4/5;border-radius:16px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse 62% 48% at 50% 42%,rgba(198,255,61,.18),transparent 72%),var(--tile);transition:border-color .2s}
-.tile svg{height:86%;width:auto}.card:hover .tile{border-color:var(--or)}
+.tile{position:relative}.tile svg{height:86%;width:auto;position:absolute;opacity:0;pointer-events:none}.tile .product-photo{position:relative;z-index:1;width:92%;height:92%;object-fit:contain;border-radius:10px}.card:hover .tile{border-color:var(--or)}
 .meta{display:flex;justify-content:space-between;gap:10px;margin-top:12px;font-weight:700}.meta span:last-child{color:var(--gr);white-space:nowrap}
 .zone{background:var(--or);color:#0b0d0b;padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(48px,7vw,96px)}
 .zone p{max-width:54ch;margin:16px 0 28px;font-size:18px}.chips{display:flex;flex-wrap:wrap;gap:10px}.chips span{border:1.5px solid #0b0d0b;border-radius:99px;padding:7px 16px;font-weight:500}
@@ -96,7 +96,7 @@ input{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:
 
 <script>
 /* À MODIFIER : numéro WhatsApp au format international, sans le + */
-const CFG={whatsapp:"2250700000000",payNum:"0705394262",payWa:"2250705394262",waveLink:"",omLink:"",payShow:"+225 07 05 39 42 62"};
+const CFG={whatsapp:"2250705394262",payNum:"0705394262",payWa:"2250705394262",waveLink:"",omLink:"",payShow:"+225 07 05 39 42 62"};
 let u=0;const gl=(i,c)=>`<linearGradient id="${i}" x1="0" x2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${c[1]}"/></linearGradient>`;
 const svg=(b,c)=>{const i="g"+(++u);return `<svg viewBox="0 0 200 250" role="img">${gl(i,c)}${b(i,c)}</svg>`};
 const ART={
@@ -132,7 +132,21 @@ ART.mini=(c,t)=>S2((i,b)=>R(95,52,10,22,3,"#26302d")+R(86,72,28,24,4,"#1b1f1e")+
 ART.pen=c=>S2((i,b)=>R(92,18,16,30,6,"#1b1f1e")+R(95,22,3,20,1.5,"#fff",'opacity=".3"')+R(90,46,20,52,5,"#cfd6d3",'opacity=".3"')+R(92,66,16,30,4,"#d08a35",'opacity=".9"')+R(90,46,20,52,5,`url(#${i}g)`)+R(88,96,24,6,2,`url(#${i}m)`)+B(i,88,102,24,120,12)+R(88,140,24,5,2,`url(#${i}m)`)+LED(i,200),c);
 ART.cart=c=>S2((i,b)=>[0,1,2].map(n=>{const x=48+n*36;return R(x+8,92,14,14,4,"#1b1f1e")+R(x,104,30,86,9,"#262b29")+R(x+3,138,24,48,6,"#d08a35",'opacity=".9"')+R(x,104,30,86,9,`url(#${i}g)`)+R(x+6,190,18,8,2,`url(#${i}m)`)}).join("")+T(100,218,10,"× 3","currentColor"),c);
 const CAT=[["all","Tout"],...Object.entries(C)];
-const $=s=>document.querySelector(s),fmt=n=>n.toLocaleString("fr-FR")+" FCFA",art=p=>ART[p.a](p.k,p.t);
+const PHOTO={
+  pod:"https://assets.aromes-et-liquides.fr/60374-thickbox_default/pod-xros-pro-2-vaporesso.jpg",
+  mod:"https://media.vaping360.com/images/geekvape-aegis-legend-III-01-3ee2ec51ea.webp?imageType=Standard",
+  puff:"https://www.enspirar.es/cdn/shop/products/mango_bb7d1ccf-aa0e-486d-be95-9561db1317d1.jpg?v=1658849759",
+  juice:"https://vplusx.com/file/upload/2026-04/24/202604241011213483.png",
+  mini:"https://vplusx.com/file/upload/2026-04/24/202604241011213483.png",
+  coil:"https://vapeloungeonline.co.uk/cdn/shop/files/oxva-unicoil-coils-x-5-pack-resi.png?v=1752847700",
+  batt:"https://cdn.shopify.com/s/files/1/0481/9678/0183/products/vapcell-18650-battery-2500mah-2.jpg?v=1604526086",
+  tank:"https://www.vapotelec.com/4753-small_default/-itank-tank-8-ml-vaporesso.jpg",
+  charger:"https://www.vapeking.co.za/images/detailed/5/-46.webp",
+  cart:"https://cdn.shopify.com/s/files/1/0241/2241/files/3_f1800090-e717-4f64-9577-7c27bc16b3d2.jpg?v=1773001901",
+  tip:"https://www.vapotelec.com/4753-small_default/-itank-tank-8-ml-vaporesso.jpg",
+  pen:"https://assets.aromes-et-liquides.fr/60374-thickbox_default/pod-xros-pro-2-vaporesso.jpg"
+};
+const $=s=>document.querySelector(s),fmt=n=>n.toLocaleString("fr-FR")+" FCFA",art=p=>`<img class="product-photo" src="${PHOTO[p.a]||PHOTO.pod}" alt="Photo représentative : ${p.n}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.opacity='1'">${ART[p.a](p.k,p.t)}`;
 let F="all",cart=[];
 $("#stage").innerHTML=ART.pod(["#3a4741","#0d1f1a"])+ART.mod(["#ff9a63","#ff6a2b"])+ART.puff(["#8fe0bd","#2fa97a"]);
 let Q="";function grid(){const L=P.filter(p=>(F==="all"||p.c===F)&&(p.n+" "+p.d).toLowerCase().includes(Q));$("#count").textContent=L.length+" produits";$("#pills").innerHTML=CAT.map(([k,t])=>`<button data-f="${k}" aria-pressed="${F===k}">${t}</button>`).join("");
