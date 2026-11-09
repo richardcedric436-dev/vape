@@ -65,6 +65,7 @@ input{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:
 .pay{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .pay label{flex-direction:row;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;background:var(--card)}
 .pay input{width:auto}.pay label:has(input:checked){border-color:var(--or);box-shadow:0 0 0 1px var(--or)}
+.pinfo{border:1px dashed var(--or);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.7;background:var(--card)}.pinfo small{display:block;color:var(--mute);margin-top:4px}.num{font-family:Unbounded,Manrope,sans-serif;font-weight:700;color:var(--gr);white-space:nowrap}.cp{margin-left:6px;border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:700;background:var(--bg)}
 .sizes{display:flex;gap:8px;flex-wrap:wrap}
 .pd{display:grid;grid-template-columns:1fr 1fr}.pd .tile{border-radius:0;aspect-ratio:auto;min-height:320px}
 .scrim{position:fixed;inset:0;background:rgba(5,12,9,.6);z-index:70;opacity:0;pointer-events:none;transition:opacity .3s}.scrim.open{opacity:1;pointer-events:auto}
@@ -85,7 +86,7 @@ input{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:
 <div class="mq" aria-hidden="true"><div>Kits pod ✦ Box mods ✦ Puffs ✦ E-liquides ✦ Sels de nicotine ✦ Atomiseurs ✦ Batteries ✦ Accessoires ✦ Kits pod ✦ Box mods ✦ Puffs ✦ E-liquides ✦ Sels de nicotine ✦ Atomiseurs ✦ Batteries ✦ Accessoires ✦ Kits pod ✦ Box mods ✦ Puffs ✦ E-liquides ✦ Sels de nicotine ✦ Atomiseurs ✦ Batteries ✦ Accessoires ✦ Kits pod ✦ Box mods ✦ Puffs ✦ E-liquides ✦ Sels de nicotine ✦ Atomiseurs ✦ Batteries ✦ Accessoires ✦ </div></div>
 <section class="perks pad"><div><i>01</i><b>Livraison express</b><span>Dans toutes les communes d’Abidjan.</span></div><div><i>02</i><b>Paiement flexible</b><span>Cash, Wave, Orange Money ou MTN MoMo.</span></div><div><i>03</i><b>Conseils gratuits</b><span>On vous aide à choisir sur WhatsApp.</span></div></section>
 <section class="shop pad" id="boutique"><header><h2>La boutique</h2><span class="cnt" id="count"></span></header><input class="search" id="q" type="search" placeholder="Rechercher un produit, une saveur…" aria-label="Rechercher un produit"><div class="pills" id="pills"></div><div class="grid" id="grid"></div></section>
-<section class="zone pad" id="livraison"><h2>On livre où vous êtes.</h2><p>Passez commande, on confirme sur WhatsApp et un livreur vous apporte vos produits. Paiement à la livraison possible.</p><div class="chips"><span>Cocody</span><span>Plateau</span><span>Marcory</span><span>Treichville</span><span>Yopougon</span><span>Abobo</span><span>Adjamé</span><span>Koumassi</span><span>Port-Bouët</span><span>Riviera</span><span>Angré</span><span>Bingerville</span></div></section>
+<section class="zone pad" id="livraison"><h2>On livre où vous êtes.</h2><p>Passez commande, on confirme sur WhatsApp et un livreur vous apporte vos produits. Paiement à la livraison possible, ou par Wave et Orange Money au <b>+225 07 05 39 42 62</b>.</p><div class="chips"><span>Cocody</span><span>Plateau</span><span>Marcory</span><span>Treichville</span><span>Yopougon</span><span>Abobo</span><span>Adjamé</span><span>Koumassi</span><span>Port-Bouët</span><span>Riviera</span><span>Angré</span><span>Bingerville</span></div></section>
 <footer class="pad"><b class="logo" style="color:var(--ink)">Abidjan Vape</b><p>Produits réservés aux adultes de 18 ans et plus. Les produits contenant de la nicotine créent une forte dépendance. © 2026 Abidjan Vape.</p></footer>
 
 <dialog id="age"><div class="box"><h3>Vous avez 18 ans ou plus ?</h3><p>La vente de produits de vape est réservée aux adultes.</p><button class="btn or" id="yes">Oui, j’ai 18 ans ou plus</button><button class="btn ghost" id="no">Non, quitter</button></div></dialog>
@@ -95,7 +96,7 @@ input{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:
 
 <script>
 /* À MODIFIER : numéro WhatsApp au format international, sans le + */
-const CFG={whatsapp:"2250700000000"};
+const CFG={whatsapp:"2250700000000",payNum:"0705394262",payWa:"2250705394262",payShow:"+225 07 05 39 42 62"};
 let u=0;const gl=(i,c)=>`<linearGradient id="${i}" x1="0" x2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${c[1]}"/></linearGradient>`;
 const svg=(b,c)=>{const i="g"+(++u);return `<svg viewBox="0 0 200 250" role="img">${gl(i,c)}${b(i,c)}</svg>`};
 const ART={
@@ -147,14 +148,18 @@ $("#items").onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;const 
 function cartOpen(o){$("#drawer").classList.toggle("open",o);$("#scrim").classList.toggle("open",o)}
 $("#open").onclick=()=>cartOpen(true);$("#close").onclick=$("#scrim").onclick=()=>cartOpen(false);
 document.addEventListener("keydown",e=>{if(e.key==="Escape")cartOpen(false)});
+const MM=m=>m==="Wave"||m==="Orange Money";
+const pbox=(m,t)=>MM(m)?`<div class="pinfo"><b>Paiement ${m}</b><br>Envoyez <b>${fmt(t)}</b> au numéro <span class="num">${CFG.payShow}</span> <button type="button" class="cp">Copier</button><small>Vérifiez bien le numéro avant de valider le transfert.</small></div>`:m==="MTN MoMo"?`<div class="pinfo">Pour MTN MoMo, le numéro de paiement vous est envoyé sur WhatsApp.</div>`:`<div class="pinfo">Vous payez en espèces à la livraison.</div>`;
+function cp(r){const b=r.querySelector(".cp");if(b)b.onclick=()=>{try{navigator.clipboard.writeText(CFG.payNum)}catch(e){}b.textContent="Copié ✓"}}
 $("#checkout").onclick=()=>{if(!cart.length)return;cartOpen(false);const d=$("#co"),tot=cart.reduce((a,l)=>a+l.q*l.p.p,0);
 d.innerHTML=`<div class="box">${X}<h3>Finaliser la commande</h3><label>Nom<input name="nom" required autocomplete="name"></label><label>Téléphone<input name="tel" type="tel" required autocomplete="tel"></label><label>Commune et adresse de livraison<input name="adr" required placeholder="Ex : Cocody Angré, 8e tranche"></label>
 <div class="pay">${["Cash à la livraison","Wave","Orange Money","MTN MoMo"].map((m,i)=>`<label><input type="radio" name="pay" value="${m}" ${i?"":"checked"}>${m}</label>`).join("")}</div>
-<p style="font-size:14px">Pour Wave, Orange Money et MTN MoMo, le numéro de paiement vous est envoyé sur WhatsApp.</p><b>Total ${fmt(tot)}</b><button class="btn or" id="go">Valider la commande</button></div>`;
+<div id="pinfo"></div><b>Total ${fmt(tot)}</b><button class="btn or" id="go">Valider la commande</button></div>`;
 d.querySelector(".x").onclick=()=>d.close();d.onclick=e=>{if(e.target===d)d.close()};
+const upd=()=>{const m=d.querySelector("[name=pay]:checked").value;d.querySelector("#pinfo").innerHTML=pbox(m,tot);cp(d)};d.querySelectorAll("[name=pay]").forEach(r=>r.onchange=upd);upd();
 d.querySelector("#go").onclick=()=>{for(const i of d.querySelectorAll("input[required]"))if(!i.reportValidity())return;const q=n=>d.querySelector(`[name=${n}]`).value.trim(),pay=d.querySelector("[name=pay]:checked").value,ref="AV-"+Math.random().toString(36).slice(2,6).toUpperCase();
-const msg=`Commande ${ref}\n`+cart.map(l=>`${l.q} × ${l.p.n} : ${fmt(l.q*l.p.p)}`).join("\n")+`\nTotal : ${fmt(tot)}\nPaiement : ${pay}\n\n${q("nom")}\n${q("tel")}\n${q("adr")}`;
-d.innerHTML=`<div class="box">${X}<h3>Commande ${ref}</h3><p>Une dernière étape : envoyez-nous votre commande sur WhatsApp pour la confirmer et organiser la livraison.</p><a class="btn or" href="https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Envoyer sur WhatsApp</a></div>`;d.querySelector(".x").onclick=()=>d.close();cart=[];draw()};d.showModal()};
+const msg=`Commande ${ref}\n`+cart.map(l=>`${l.q} × ${l.p.n} : ${fmt(l.q*l.p.p)}`).join("\n")+`\nTotal : ${fmt(tot)}\nPaiement : ${pay}${MM(pay)?" (vers "+CFG.payShow+")":""}\n\n${q("nom")}\n${q("tel")}\n${q("adr")}`;
+d.innerHTML=`<div class="box">${X}<h3>Commande ${ref}</h3>${MM(pay)?pbox(pay,tot):""}<p>Une dernière étape : envoyez-nous votre commande${MM(pay)?" et la capture de votre paiement":""} sur WhatsApp pour la confirmer et organiser la livraison.</p><a class="btn or" href="https://wa.me/${MM(pay)?CFG.payWa:CFG.whatsapp}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Envoyer sur WhatsApp</a></div>`;d.querySelector(".x").onclick=()=>d.close();cp(d);cart=[];draw()};d.showModal()};
 const age=$("#age");let ok=false;try{ok=sessionStorage.getItem("av18")==="1"}catch(e){}
 if(!ok){age.addEventListener("cancel",e=>e.preventDefault());age.showModal();$("#yes").onclick=()=>{try{sessionStorage.setItem("av18","1")}catch(e){}age.close()};$("#no").onclick=()=>{document.body.innerHTML='<p style="padding:40px;font-family:sans-serif">Ce site est réservé aux adultes.</p>'}}
 $("#q").oninput=e=>{Q=e.target.value.trim().toLowerCase();grid()};grid();draw();
