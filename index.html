@@ -65,7 +65,7 @@ input{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:
 .pay{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .pay label{flex-direction:row;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;background:var(--card)}
 .pay input{width:auto}.pay label:has(input:checked){border-color:var(--or);box-shadow:0 0 0 1px var(--or)}
-.pinfo{border:1px dashed var(--or);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.7;background:var(--card)}.pinfo small{display:block;color:var(--mute);margin-top:4px}.num{font-family:Unbounded,Manrope,sans-serif;font-weight:700;color:var(--gr);white-space:nowrap}.cp{margin-left:6px;border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:700;background:var(--bg)}
+.pinfo{border:1px dashed var(--or);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.7;background:var(--card)}.pinfo small{display:block;color:var(--mute);margin-top:4px}.num{font-family:Unbounded,Manrope,sans-serif;font-weight:700;color:var(--gr);white-space:nowrap}.pgo{margin:10px 0 2px;padding:12px}.cp{margin-left:6px;border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:700;background:var(--bg)}
 .sizes{display:flex;gap:8px;flex-wrap:wrap}
 .pd{display:grid;grid-template-columns:1fr 1fr}.pd .tile{border-radius:0;aspect-ratio:auto;min-height:320px}
 .scrim{position:fixed;inset:0;background:rgba(5,12,9,.6);z-index:70;opacity:0;pointer-events:none;transition:opacity .3s}.scrim.open{opacity:1;pointer-events:auto}
@@ -96,7 +96,7 @@ input{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:
 
 <script>
 /* À MODIFIER : numéro WhatsApp au format international, sans le + */
-const CFG={whatsapp:"2250700000000",payNum:"0705394262",payWa:"2250705394262",payShow:"+225 07 05 39 42 62"};
+const CFG={whatsapp:"2250700000000",payNum:"0705394262",payWa:"2250705394262",waveLink:"",omLink:"",payShow:"+225 07 05 39 42 62"};
 let u=0;const gl=(i,c)=>`<linearGradient id="${i}" x1="0" x2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${c[1]}"/></linearGradient>`;
 const svg=(b,c)=>{const i="g"+(++u);return `<svg viewBox="0 0 200 250" role="img">${gl(i,c)}${b(i,c)}</svg>`};
 const ART={
@@ -149,7 +149,10 @@ function cartOpen(o){$("#drawer").classList.toggle("open",o);$("#scrim").classLi
 $("#open").onclick=()=>cartOpen(true);$("#close").onclick=$("#scrim").onclick=()=>cartOpen(false);
 document.addEventListener("keydown",e=>{if(e.key==="Escape")cartOpen(false)});
 const MM=m=>m==="Wave"||m==="Orange Money";
-const pbox=(m,t)=>MM(m)?`<div class="pinfo"><b>Paiement ${m}</b><br>Envoyez <b>${fmt(t)}</b> au numéro <span class="num">${CFG.payShow}</span> <button type="button" class="cp">Copier</button><small>Vérifiez bien le numéro avant de valider le transfert.</small></div>`:m==="MTN MoMo"?`<div class="pinfo">Pour MTN MoMo, le numéro de paiement vous est envoyé sur WhatsApp.</div>`:`<div class="pinfo">Vous payez en espèces à la livraison.</div>`;
+const MAXIT=/iPhone|iPad|iPod/i.test(navigator.userAgent)?"https://apps.apple.com/app/id1061120855":"https://play.google.com/store/apps/details?id=com.orange.myorange.oci";
+const WAVEAPP=/iPhone|iPad|iPod/i.test(navigator.userAgent)?"https://apps.apple.com/app/id1523884528":"https://play.google.com/store/apps/details?id=com.wave.personal";
+const payGo=m=>m==="Wave"?(CFG.waveLink?`<a class="btn or pgo" href="${CFG.waveLink}" target="_blank" rel="noopener">Payer avec Wave</a><a class="btn ghost pgo" href="${WAVEAPP}" target="_blank" rel="noopener">Ouvrir l’app Wave</a>`:`<a class="btn or pgo" href="${WAVEAPP}" target="_blank" rel="noopener">Ouvrir l’app Wave</a><small>Dans Wave : Envoyer, puis collez le numéro et entrez le montant.</small>`):(CFG.omLink?`<a class="btn or pgo" href="${CFG.omLink}" target="_blank" rel="noopener">Payer avec Orange Money</a>`:`<a class="btn or pgo" href="${MAXIT}" target="_blank" rel="noopener">Ouvrir Max it</a><a class="btn ghost pgo" href="tel:%23144%23">Ou composer #144#</a>`)+`<small>Dans Max it ou le menu #144# : Orange Money, puis Transfert. Collez le numéro et entrez le montant.</small>`;
+const pbox=(m,t)=>MM(m)?`<div class="pinfo"><b>Paiement ${m}</b><br>Envoyez <b>${fmt(t)}</b> au numéro <span class="num">${CFG.payShow}</span> <button type="button" class="cp">Copier</button>${payGo(m)}<small>Vérifiez bien le numéro avant de valider le transfert.</small></div>`:m==="MTN MoMo"?`<div class="pinfo">Pour MTN MoMo, le numéro de paiement vous est envoyé sur WhatsApp.</div>`:`<div class="pinfo">Vous payez en espèces à la livraison.</div>`;
 function cp(r){const b=r.querySelector(".cp");if(b)b.onclick=()=>{try{navigator.clipboard.writeText(CFG.payNum)}catch(e){}b.textContent="Copié ✓"}}
 $("#checkout").onclick=()=>{if(!cart.length)return;cartOpen(false);const d=$("#co"),tot=cart.reduce((a,l)=>a+l.q*l.p.p,0);
 d.innerHTML=`<div class="box">${X}<h3>Finaliser la commande</h3><label>Nom<input name="nom" required autocomplete="name"></label><label>Téléphone<input name="tel" type="tel" required autocomplete="tel"></label><label>Commune et adresse de livraison<input name="adr" required placeholder="Ex : Cocody Angré, 8e tranche"></label>
