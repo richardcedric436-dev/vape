@@ -23,13 +23,14 @@ h1,h2,h3,.logo{font-family:Syne,sans-serif;letter-spacing:-.03em;font-weight:800
 .nav nav{display:flex;gap:26px;align-items:center;font-weight:500;font-size:15px}.nav a{color:var(--ink);text-decoration:none}
 .pill{background:var(--or);color:#0d1f1a;border-radius:99px;padding:9px 18px;font-weight:700;font-size:14px}
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(20px,4vw,56px);padding-top:clamp(28px,5vw,64px);overflow:hidden}
-.hero h1{grid-column:1/-1;font-size:clamp(56px,15vw,240px);line-height:.84;text-transform:uppercase;position:relative;z-index:2}
-.hero h1 span{display:block}.hero h1 .o{color:transparent;-webkit-text-stroke:2px var(--ink)}
-.lead{align-self:center;padding-bottom:40px}.lead p{color:var(--mute);font-size:18px;max-width:42ch;margin-bottom:28px}
+.hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;row-gap:12px;padding-top:clamp(34px,5vw,68px);padding-bottom:24px;overflow:hidden}
+.hero h1{grid-column:1/-1;width:100%;max-width:100%;font-size:clamp(58px,11vw,168px);line-height:.88;letter-spacing:-.065em;text-transform:uppercase;position:relative;z-index:2;overflow-wrap:normal}
+.hero h1 span{display:block;white-space:nowrap}.hero h1 .o{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.lead{align-self:center;padding:12px 0 34px;max-width:560px}.lead p{color:var(--mute);font-size:clamp(16px,1.35vw,19px);max-width:42ch;margin-bottom:28px}
 .cta{display:inline-block;background:var(--or);color:#0d1f1a;font-weight:700;padding:15px 30px;border-radius:99px;text-decoration:none}
-.stage{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:2%;aspect-ratio:1/.9;margin-top:calc(-1 * clamp(30px,8vw,130px))}
-.stage::before{content:"";position:absolute;width:76%;aspect-ratio:1;border-radius:50%;background:var(--or);left:50%;bottom:4%;transform:translateX(-50%)}
-.stage svg{position:relative;width:32%;filter:drop-shadow(0 16px 16px rgba(0,0,0,.35))}.stage svg:nth-child(2){width:36%;margin-bottom:-3%}
+.stage{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:3%;aspect-ratio:1/.82;margin-top:-24px;min-width:0;isolation:isolate}
+.stage::before{content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:var(--or);left:50%;bottom:3%;transform:translateX(-50%);z-index:-1}
+.stage img{position:relative;width:29%;height:78%;object-fit:contain;filter:drop-shadow(0 16px 16px rgba(0,0,0,.25));z-index:1}.stage img:nth-child(2){width:34%;height:90%}
 .mq{overflow:hidden;background:var(--or);color:#0b0d0b;white-space:nowrap}
 .mq div{display:inline-block;padding:14px 0;animation:mq 30s linear infinite;font-family:Syne;font-weight:800;text-transform:uppercase;font-size:18px}
 @keyframes mq{to{transform:translateX(-50%)}}
@@ -76,7 +77,7 @@ input{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:
 .it{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px}.it .tile{border-radius:10px}
 .qty{display:flex;align-items:center;gap:10px;margin-top:4px}.qty button{width:28px;height:28px;border:1px solid var(--line);border-radius:50%}
 .tot{display:flex;justify-content:space-between;font-weight:700;font-size:18px;padding:16px 0}
-@media (max-width:860px){.hero{grid-template-columns:1fr}.pd{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.perks{grid-template-columns:1fr}.nav nav a{display:none}.lead{padding-bottom:24px}}
+@media (max-width:860px){.hero{grid-template-columns:1fr;row-gap:4px;padding-top:34px}.hero h1{font-size:clamp(58px,14vw,112px);letter-spacing:-.065em}.lead{padding:18px 0 0}.stage{width:min(100%,560px);margin:4px auto 0;aspect-ratio:1/.72}.pd{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.perks{grid-template-columns:1fr}.nav nav a{display:none}}
 @media (prefers-reduced-motion:reduce){.mq div{animation:none}.drawer,.scrim{transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -148,7 +149,7 @@ const PHOTO={
 };
 const $=s=>document.querySelector(s),fmt=n=>n.toLocaleString("fr-FR")+" FCFA",art=p=>`<img class="product-photo" src="${PHOTO[p.a]||PHOTO.pod}" alt="Photo représentative : ${p.n}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.opacity='1'">${ART[p.a](p.k,p.t)}`;
 let F="all",cart=[];
-$("#stage").innerHTML=ART.pod(["#3a4741","#0d1f1a"])+ART.mod(["#ff9a63","#ff6a2b"])+ART.puff(["#8fe0bd","#2fa97a"]);
+$("#stage").innerHTML=`<img src="${PHOTO.pod}" alt="" loading="lazy"><img src="${PHOTO.mod}" alt="" loading="lazy"><img src="${PHOTO.puff}" alt="" loading="lazy">`;
 let Q="";function grid(){const L=P.filter(p=>(F==="all"||p.c===F)&&(p.n+" "+p.d).toLowerCase().includes(Q));$("#count").textContent=L.length+" produits";$("#pills").innerHTML=CAT.map(([k,t])=>`<button data-f="${k}" aria-pressed="${F===k}">${t}</button>`).join("");
 $("#grid").innerHTML=L.map(p=>`<button class="card" data-id="${p.id}"><div class="tile" style="--bg-t:${p.bg}">${art(p)}</div><div class="meta"><span>${p.n}</span><span>${fmt(p.p)}</span></div></button>`).join("")||'<p class="empty">Aucun produit trouvé.</p>'}
 document.addEventListener("click",e=>{const f=e.target.closest("[data-f]");if(f){F=f.dataset.f;grid();return}const c=e.target.closest(".card");if(c)show(P.find(p=>p.id==c.dataset.id))});
